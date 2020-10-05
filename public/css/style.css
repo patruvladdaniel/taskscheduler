@@ -1,0 +1,62 @@
+body {
+    font-family: 'Heebo', sans-serif;
+    font-size: 14px;
+}
+.title {
+    font-size: 24px;
+}
+.row {
+    padding: 25px 0px;
+    display: flex;
+    align-items: center;
+}
+.no-bottom-border {
+    border-bottom: none;
+}
+.no-padding-top {
+    padding-top: 0px;
+}
+.row.task {
+    color: lightgray;
+    border-bottom: solid thin lightgray;
+}
+span.task-selected {
+    color: #00A7FF;
+}
+span.task-selected, span.task-deselected {
+    margin-right: 10px;
+}
+.task-text {
+}
+.task-hours-col {
+    text-align: right;
+}
+.task-hours {
+    font-weight: 700;
+    color: #37416C;
+}
+.col, .col-2, .col-4, .col-6, .col-8, .col-10, .col-12 {
+    padding: 0px;
+}
+input.form-control{
+    font-weight: 400;
+    padding: 15px;
+    height: auto;
+}
+input, button {
+    border-radius: 10px !important;
+    font-size: 14px !important;
+}
+button.organise-tasks {
+    color: #0DACFF;
+    padding: 9px 15px 8px 15px;
+}
+button.enter-hours {
+    color: #57C325;
+    padding: 15px;
+}
+button.add-task {
+    background-color: #00A7FF;
+    border: none;
+    padding: 9px 20px;
+}
