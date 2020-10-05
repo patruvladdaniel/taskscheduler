@@ -27,12 +27,16 @@ span.task-selected, span.task-deselected {
     margin-right: 10px;
 }
 .task-text {
+    margin-bottom: 0px;
 }
 .task-hours-col {
     text-align: right;
+    font-weight: 700;
+}
+.task-hours-col > svg {
+    color: #57C325;
 }
 .task-hours {
-    font-weight: 700;
     color: #37416C;
 }
 .col, .col-2, .col-4, .col-6, .col-8, .col-10, .col-12 {
