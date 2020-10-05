@@ -39,7 +39,8 @@ span.task-selected, span.task-deselected {
 .task-hours {
     color: #37416C;
 }
-.col, .col-2, .col-4, .col-6, .col-8, .col-10, .col-12 {
+.col, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
+.col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
     padding: 0px;
 }
 input.form-control{
@@ -55,9 +56,19 @@ button.organise-tasks {
     color: #0DACFF;
     padding: 9px 15px 8px 15px;
 }
-button.enter-hours {
+input.enter-hours-input {
+    border-color: #57C325;
+    padding: 15px 15px 15px 35px;
+}
+input.enter-hours-input, input.enter-hours-input::placeholder {
     color: #57C325;
-    padding: 15px;
+}
+span.enter-hours-icon{
+    float: left;
+    position: absolute;
+    margin-top: 15px;
+    margin-left: 15px;
+    color: #57C325;
 }
 button.add-task {
     background-color: #00A7FF;
