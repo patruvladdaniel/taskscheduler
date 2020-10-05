@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TasksController extends AbstractController
+class TaskController extends AbstractController
 {
     private function getTasks(){
         return [
