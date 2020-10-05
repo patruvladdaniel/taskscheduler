@@ -15,3 +15,14 @@ $("span.task-selected").click(function (){
     $(this).siblings(".task-text").css("font-weight", 400);
     $(this).siblings(".task-text").css("color", "lightgray");
 });
+//validation - 20 hours max
+$("input.enter-hours-input").keyup(function(){
+    let hours = $(this).val();
+    //innocent until proven guilty
+    $(this).removeClass('is-invalid');
+    $(this).siblings('div.invalid-feedback').hide();
+    if(hours <= 0 || hours > 20) {
+        $(this).addClass('is-invalid');
+        $(this).siblings('div.invalid-feedback').show();
+    }
+});
