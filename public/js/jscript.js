@@ -16,7 +16,7 @@ $("span.task-selected").click(function (){
     $(this).siblings(".task-text").css("color", "lightgray");
 });
 //validation - 20 hours max
-$("input.enter-hours-input").keyup(function(){
+$("input.enter-hours-input").on('change keyup', function(){
     let hours = $(this).val();
     //innocent until proven guilty
     $(this).removeClass('is-invalid');
@@ -25,4 +25,37 @@ $("input.enter-hours-input").keyup(function(){
         $(this).addClass('is-invalid');
         $(this).siblings('div.invalid-feedback').show();
     }
+});
+//add task
+$("form.add-task").submit(function(event) {
+    event.preventDefault();
+
+    let form = $(this);
+    let form_data = {};
+    form.serializeArray().forEach(function(obj, index){
+        form_data[obj.name] = obj.value;
+    });
+
+    $.ajax({
+        method: "POST",
+        url: "/addTask",
+        data: form_data,
+        complete: function (jqXHR, statusText) {
+            if (jqXHR.statusText === "success" && jqXHR.status == 200) {
+                //clear form
+                form[0].reset();
+                //update view
+                $.ajax({
+                    method: "GET",
+                    url: "/tasks/",
+                    data: null,
+                    complete: function(jqXHR, statusText) {
+                        if (jqXHR.statusText === "success" && jqXHR.status == 200) {
+                            $("div#tasks").html(jqXHR.responseText);
+                        }
+                    }
+                });
+            }
+        }
+    });
 });
