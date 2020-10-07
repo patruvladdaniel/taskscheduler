@@ -30,6 +30,9 @@ body {
     color: gray;
     border-bottom: solid thin lightgray;
 }
+.row.task:last-of-type{
+    border-bottom: none;
+}
 span.task-selected {
     color: #00A7FF;
 }
