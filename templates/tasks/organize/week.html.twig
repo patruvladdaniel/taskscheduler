@@ -1,0 +1,12 @@
+<div class="row d-block">
+    <div class="col">
+        <div class="week-title">
+            <h1 class="title">Week {{ week.week_number }}</h1>
+            <h2 class="subtitle">{{ week.hours }} - hours</h2>
+        </div>
+
+        {% for task in week.tasks %}
+            {% include "tasks/task.html.twig" with {'text': task.text, 'hours': task.getHoursAsFloat} %}
+        {% endfor %}
+    </div>
+</div>

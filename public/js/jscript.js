@@ -13,7 +13,7 @@ $("span.task-selected").click(function (){
     $(this).siblings(".task-deselected").removeAttr("hidden");
     //font
     $(this).siblings(".task-text").css("font-weight", 400);
-    $(this).siblings(".task-text").css("color", "lightgray");
+    $(this).siblings(".task-text").css("color", "gray");
 });
 //validation - 20 hours max
 $("input.enter-hours-input").on('change keyup', function(){

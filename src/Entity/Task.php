@@ -49,6 +49,11 @@ class Task
         return $this->hours;
     }
 
+    public function getHoursAsFloat(): ?float
+    {
+        return (int)date_format($this->hours, "H") + (int)date_format($this->hours,"i") / 60;
+    }
+
     public function setHours(\DateTimeInterface $hours): self
     {
         $this->hours = $hours;

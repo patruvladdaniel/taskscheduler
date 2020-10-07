@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\Task;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,13 +15,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class TaskController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/", name="homepage")
      * @return Response
      */
     public function administer()
     {
         $tasksRepository = $this->getDoctrine()->getRepository(Task::class);
-        return $this->render('tasks/administer.html.twig', ['tasks' => $tasksRepository->findAll()]);
+        return $this->render('tasks/administer/administer.html.twig', ['tasks' => $tasksRepository->findAll()]);
     }
 
     /**
@@ -37,7 +38,7 @@ class TaskController extends AbstractController
      * @Route("/addTask", methods={"POST"})
      * @param Request $request
      * @param EntityManagerInterface $entityManager
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @return JsonResponse
      */
     public function addTask(Request $request, EntityManagerInterface $entityManager)
     {
@@ -56,14 +57,60 @@ class TaskController extends AbstractController
         return $this->json(["message" => "Task added successfully!"]);
     }
 
+    private function organizeTasksIntoWeeks($tasks)
+    {
+        $weeks = [
+            [
+                'tasks' => [],
+                'hours' => 0.0,
+                'week_number' => 1
+            ]
+        ];
+        foreach($tasks as $task)
+        {
+            $taskHasBeenSet = false;
+            $task_hours = $task->getHoursAsFloat();
+
+            foreach($weeks as $index => $week)
+            {
+                if($week['hours'] + $task_hours <= 40.0)    //40h work week
+                {
+                    array_push($weeks[$index]['tasks'], $task);
+                    $weeks[$index]['hours'] += $task_hours;
+                    $taskHasBeenSet = true;
+                }
+            }
+
+            if(!$taskHasBeenSet)
+            {
+                array_push($weeks, [
+                    'tasks' => [$task],
+                    'hours' => $task_hours,
+                    'week_number' => count($weeks) + 1
+                ]);
+            }
+        }
+        return $weeks;
+        /*
+         * week 1
+         *  -   task 1
+         *  -   task 2
+         *  -   task 3
+         * week 2
+         *  -   task 4
+         *  -   task 5
+         */
+    }
+
     /**
-     * @Route("/organize")
+     * @Route("/organize", name="route-tasks-organize")
      * @return Response
      */
     public function organize()
     {
-        return $this->render('tasks/organize.html.twig',
-            ['number' => 10]
+        $tasksRepository = $this->getDoctrine()->getRepository(Task::class);
+        return $this->render('tasks/organize/organize.html.twig',
+            ['weeks' => $this->organizeTasksIntoWeeks($tasksRepository->findBy([], ['hours' => 'DESC']))]
         );
     }
 }
