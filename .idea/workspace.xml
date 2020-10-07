@@ -20,8 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b8b4c40-b647-4521-a75e-7080e7ad7ee3" name="Default Changelist" comment="Added TWIG">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +154,8 @@
       <option name="presentableId" value="Default" />
       <updated>1601807334373</updated>
       <workItem from="1601807336450" duration="335000" />
-      <workItem from="1601807691617" duration="75622000" />
+      <workItem from="1601807691617" duration="75679000" />
+      <workItem from="1602062400324" duration="974000" />
     </task>
     <task id="LOCAL-00001" summary="Added TWIG">
       <created>1601809316609</created>
@@ -179,6 +180,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added TWIG" />
