@@ -57,6 +57,10 @@ class TaskController extends AbstractController
         return $this->json(["message" => "Task added successfully!"]);
     }
 
+    /**
+     * @param $tasks
+     * @return array[]
+     */
     private function organizeTasksIntoWeeks($tasks)
     {
         $weeks = [
@@ -81,7 +85,7 @@ class TaskController extends AbstractController
                 }
             }
 
-            if(!$taskHasBeenSet)
+            if(!$taskHasBeenSet)    //new week
             {
                 array_push($weeks, [
                     'tasks' => [$task],
@@ -91,15 +95,6 @@ class TaskController extends AbstractController
             }
         }
         return $weeks;
-        /*
-         * week 1
-         *  -   task 1
-         *  -   task 2
-         *  -   task 3
-         * week 2
-         *  -   task 4
-         *  -   task 5
-         */
     }
 
     /**
